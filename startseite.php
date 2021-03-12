@@ -32,8 +32,8 @@ if (isset($_POST["coronaid"])) {
 
   $personId = $_POST["coronaid"];
   $ts = "2021-03-12";
-  $pw = "dasmussgeaendertwerden";
-  $name = "Gesundheitsamt";
+  $pw = "Test123";
+  $name = "Mosbach";
 
   $url = "http://18.198.41.152:8080/setIDtoPositive.php?personid={$personId}&timestamp={$ts}&name={$name}&password={$pw}";
   var_dump($url);
