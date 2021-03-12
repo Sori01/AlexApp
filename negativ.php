@@ -8,6 +8,7 @@
 </head>
 
 <body>
+
   <div class="nav">
   <h1>Alex | Gesundheitsamt</h1> 
   </div>
@@ -19,9 +20,9 @@
 
   <div id="top">
     
-    <form action="startseite.php" method="post">
-      <p class="text">Tragen Sie hier die ID der infizierten Person ein.</p>
-      <input name="coronaid" placeholder="ID" type="text">
+    <form action="negativ.php" method="post">
+      <p class="text">Tragen Sie hier die ID der nicht infizierten Person ein.</p>
+      <input name="nocoronaid" placeholder="ID" type="text">
       <button class="link-ad" type="submit" name="hinzufügen">Hinzufügen</button>
     </form>
 
@@ -29,19 +30,20 @@
 
   <div id="middle">
   <?php
-    if (isset($_POST["coronaid"])) {
-    /*echo "<h2>ID lautet: " .$_POST["coronaid"] . "</h2>";*/
+    if (isset($_POST["nocoronaid"])) {
+    /*echo "<h2>ID lautet: " .$_POST["nocoronaid"] . "</h2>";*/
     echo " <h2> Die Personen ID wurde erfolgreich in die Datenbank eingetragen.</h2>";
   
     // create curl resource 
     $ch = curl_init(); 
 
-    $personId = $_POST["coronaid"];
+    $personId = $_POST["nocoronaid"];
     $ts = "2021-03-12";
     $pw = "Test123";
     $name = "Mosbach";
 
-    $url = "http://18.198.41.152:8080/setIDtoPositive.php?personid={$personId}&timestamp={$ts}&name={$name}&password={$pw}";
+    $url = "http://18.198.41.152:8080/setIDtoNegative.php?personid={$personId}&timestamp={$ts}&name={$name}&password={$pw}";
+
     var_dump($url);
 
     // set url 
