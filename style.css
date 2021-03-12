@@ -10,6 +10,10 @@
     font-weight: normal;
   }
 
+  body {
+    background-color: #e4e7e7;
+  }
+
   .index {
     margin-top: 50px;
     border-style: solid;
@@ -130,13 +134,12 @@
 
   .nav {
     width: 1000px;
-
     margin-left: auto;
     margin-right: auto;
     display: flex;
     align-items: center;
     height: 75px;
-    background-color: rgb(255, 255, 255);
+    background-color: #e4e7e7;
     top: 0;
     left: 0;
     right: 0;

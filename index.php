@@ -85,9 +85,9 @@ if (isset($_POST['submit']) && !isset($_SESSION['id'])) {
             unset($_SESSION['successful']);
           }
           ?>
-          <input name="username" placeholder="Dein Username" type="text" value="<?php echo $_POST['username'] ?? null ?>">
+          <input name="username" placeholder="Gesundheitsamt" type="text" value="<?php echo $_POST['username'] ?? null ?>">
           <br>
-          <input name="password" placeholder="Dein Passwort" type="password" value="<?php echo $_POST['password'] ?? null ?>">
+          <input name="password" placeholder="Passwort" type="password" value="<?php echo $_POST['password'] ?? null ?>">
           <br>
          
           <button class="link-blue" type="submit" name="submit">Anmelden</button>
