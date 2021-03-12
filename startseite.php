@@ -26,7 +26,31 @@
 if (isset($_POST["coronaid"])) {
     /*echo "<h2>ID lautet: " .$_POST["coronaid"] . "</h2>";*/
     echo " <h2> Die Personen ID wurde erfolgreich in die Datenbank eingetragen.</h2>";
-  }
+  
+  // create curl resource 
+  $ch = curl_init(); 
+
+  $personId = $_POST["coronaid"];
+  $ts = "2021-03-12";
+  $pw = "dasmussgeaendertwerden";
+  $name = "Gesundheitsamt";
+
+  $url = "http://18.198.41.152:8080/setIDtoPositive.php?personid={$personId}&timestamp={$ts}&name={$name}&password={$pw}";
+  var_dump($url);
+
+  // set url 
+  curl_setopt($ch, CURLOPT_URL, $url); 
+
+  //return the transfer as a string 
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+  // $output contains the output string 
+  $output = curl_exec($ch); 
+  var_dump($output);
+
+  // close curl resource to free up system resources 
+  curl_close($ch);
+}
 
 ?>
   </div>
