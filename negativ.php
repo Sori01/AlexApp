@@ -44,7 +44,7 @@
 
     $url = "http://18.198.41.152:8080/setIDtoNegative.php?personid={$personId}&timestamp={$ts}&name={$name}&password={$pw}";
 
-    var_dump($url);
+    //var_dump($url);
 
     // set url 
     curl_setopt($ch, CURLOPT_URL, $url); 
@@ -54,7 +54,7 @@
 
     // $output contains the output string 
     $output = curl_exec($ch); 
-    var_dump($output);
+    //var_dump($output);
 
     // close curl resource to free up system resources 
     curl_close($ch);
