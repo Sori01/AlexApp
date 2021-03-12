@@ -29,17 +29,34 @@
 
   <div id="middle">
   <?php
-    if (isset($_POST["coronaid"])) {
+  session_start();
+
+    if (
+      isset($_POST["password"]) && isset($_POST["username"]) &&
+      !empty($_POST["password"]) && !empty($_POST["username"])
+      ) {
+      $_SESSION["password"] = $_POST["password"];
+      $_SESSION["username"] = $_POST["username"];
+    }
+    else if (
+      !isset($_SESSION["password"]) || !isset($_SESSION["username"]) ||
+      empty($_SESSION["password"]) || empty($_SESSION["username"])
+      ) {
+      header("Location:index.php");
+      die();
+    }
+
+if (isset($_POST["coronaid"])) {
     /*echo "<h2>ID lautet: " .$_POST["coronaid"] . "</h2>";*/
-    echo " <h2> Die Personen ID wurde erfolgreich in die Datenbank eingetragen.</h2>";
+    
   
     // create curl resource 
     $ch = curl_init(); 
 
     $personId = $_POST["coronaid"];
     $ts = "2021-03-12";
-    $pw = "Test123";
-    $name = "Mosbach";
+    $pw = $_SESSION["password"]; //"Test123";
+    $name = $_SESSION["username"]; //"Mosbach";
 
     $url = "http://18.198.41.152:8080/setIDtoPositive.php?personid={$personId}&timestamp={$ts}&name={$name}&password={$pw}";
     //var_dump($url);
@@ -53,6 +70,8 @@
     // $output contains the output string 
     $output = curl_exec($ch); 
     //var_dump($output);
+
+    echo " <h2> Die Personen ID wurde erfolgreich in die Datenbank eingetragen.</h2>";
 
     // close curl resource to free up system resources 
     curl_close($ch);
