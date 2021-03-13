@@ -1,4 +1,9 @@
 <?php
+
+session_start();
+session_unset();
+session_destroy(); 
+
 /* Standard Einstellungen */
 require_once("settings.php");
 

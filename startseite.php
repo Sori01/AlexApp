@@ -46,6 +46,34 @@
       die();
     }
 
+ 
+$ch = curl_init(); 
+$pw = $_SESSION["password"]; //"Test123";
+$name = $_SESSION["username"]; //"Mosbach";
+
+$url = "http://18.198.41.152:8080/checkLogin.php?name={$name}&password={$pw}";
+
+curl_setopt($ch, CURLOPT_URL, $url); 
+
+//return the transfer as a string 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+
+// $output contains the output string 
+$output = curl_exec($ch); 
+
+$output = json_decode($output);
+if ($output->message == "login") {
+  echo "login successful";
+}
+else {
+  header("Location:index.php");
+  die();
+}
+
+// close curl resource to free up system resources 
+curl_close($ch);
+
+
 if (isset($_POST["coronaid"])) {
     /*echo "<h2>ID lautet: " .$_POST["coronaid"] . "</h2>";*/
     
