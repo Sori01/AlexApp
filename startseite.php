@@ -63,7 +63,7 @@ $output = curl_exec($ch);
 
 $output = json_decode($output);
 if ($output->message == "login") {
-  echo "login successful";
+  //echo "login successful";
 }
 else {
   header("Location:index.php");
