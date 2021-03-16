@@ -48,30 +48,27 @@
 
  
 $ch = curl_init(); 
-$pw = $_SESSION["password"]; //"Test123";
-$name = $_SESSION["username"]; //"Mosbach";
+
+$pw = $_SESSION["password"];                                                            //"Test123";
+$name = $_SESSION["username"];                                                          //"Mosbach";
 
 $url = "http://18.198.41.152:8080/checkLogin.php?name={$name}&password={$pw}";
 
 curl_setopt($ch, CURLOPT_URL, $url); 
 
-//return the transfer as a string 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);                                          //return the transfer as a string 
 
-// $output contains the output string 
-$output = curl_exec($ch); 
+$output = curl_exec($ch);                                                             // $output contains the output string 
 
 $output = json_decode($output);
-if ($output->message == "login") {
-  //echo "login successful";
+if ($output->message == "login") {                                                      //echo "login successful";
 }
 else {
   header("Location:index.php");
   die();
 }
 
-// close curl resource to free up system resources 
-curl_close($ch);
+curl_close($ch);                                                                        // close curl resource to free up system resources 
 
 
 if (isset($_POST["coronaid"])) {
@@ -83,22 +80,19 @@ if (isset($_POST["coronaid"])) {
 
     $personId = $_POST["coronaid"];
     $ts = "2021-03-12";
-    $pw = $_SESSION["password"]; //"Test123";
-    $name = $_SESSION["username"]; //"Mosbach";
+    $pw = $_SESSION["password"];                        //"Test123";
+    $name = $_SESSION["username"];                        //"Mosbach";
 
     $url = "http://18.198.41.152:8080/setIDtoPositive.php?personid={$personId}&timestamp={$ts}&name={$name}&password={$pw}";
     //var_dump($url);
 
-    // set url 
-    curl_setopt($ch, CURLOPT_URL, $url); 
+                                                                                                   
+    curl_setopt($ch, CURLOPT_URL, $url);                                                            // set url 
+    
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);                                                    //return the transfer as a string 
 
-    //return the transfer as a string 
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-
-    // $output contains the output string 
-    $output = curl_exec($ch); 
-    //var_dump($output);
-
+    $output = curl_exec($ch);                                                                         // $output contains the output string //var_dump($output);
+     
     echo " <h2> Die Personen ID wurde erfolgreich in die Datenbank eingetragen.</h2>";
 
     // close curl resource to free up system resources 

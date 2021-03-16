@@ -31,16 +31,14 @@
   <div id="middle">
   <?php
     if (isset($_POST["nocoronaid"])) {
-    /*echo "<h2>ID lautet: " .$_POST["nocoronaid"] . "</h2>";*/
-    echo " <h2> Die Personen ID wurde erfolgreich in die Datenbank eingetragen.</h2>";
   
     // create curl resource 
     $ch = curl_init(); 
 
-    $personId = $_POST["nocoronaid"];
+    $personId = $_POST["coronaid"];
     $ts = "2021-03-12";
-    $pw = "Test123";
-    $name = "Mosbach";
+    $pw = $_SESSION["password"];                        //"Test123";
+    $name = $_SESSION["username"];  
 
     $url = "http://18.198.41.152:8080/setIDtoNegative.php?personid={$personId}&timestamp={$ts}&name={$name}&password={$pw}";
 
@@ -55,6 +53,9 @@
     // $output contains the output string 
     $output = curl_exec($ch); 
     //var_dump($output);
+
+    /*echo "<h2>ID lautet: " .$_POST["nocoronaid"] . "</h2>";*/
+    echo " <h2> Die Personen ID wurde erfolgreich in die Datenbank eingetragen.</h2>";
 
     // close curl resource to free up system resources 
     curl_close($ch);
